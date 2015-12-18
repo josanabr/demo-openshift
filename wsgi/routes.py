@@ -31,4 +31,9 @@ def index():
 	#return cur.description
 
 if __name__ == "__main__":
+	db.create_all()
+	for name in ['admin', 'guest']:
+		user = Events(name, '%s@demo.org'%name)
+		db.session.add(user)
+	db.session.commit()
 	app.run()
