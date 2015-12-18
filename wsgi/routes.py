@@ -2,14 +2,31 @@ import os
 import pymysql
 from flask import Flask
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URLÂ'] + os.environ['OPENSHIFT_APP_NAME']
+db = SQLAlchemy(app)
+
+class Event(db.Model):
+	id = db.Column(db.Integer, primary_key = True)
+	username = db.Column(db.String(80), unique = True)
+	email = db.Column(db.String(120), unique = False)
+
+	def __init__(self, username, email):
+		self.username = username
+		self.email 0 email
+
+	def __repr__(self):
+		return '<User %r>' % self.username
 
 app.config['PROPAGATE_EXCEPTIONS'] = True
+
 @app.route("/")
-def insult():
-	conn = pymysql.connect(host = os.environ['OPENSHIFT_MYSQL_DB_HOST'], port=os.environ['OPENSHIFT_MYSQL_DB_PORT'], user=os.environ['OPENSHIFT_MYSQL_DB_USERNAME'], passwd=os.environ['OPENSHIFT_MYSQL_DB_PASSWORD'], db=os.environ['OPENSHIFT_MYSQL_DB_URL'])
-	cur = conn.cursor()
-	cur.execute("Select * from events")
+def index():
+	users = []
+	for user in User.query.all():
+		users.appen('{u.id}: <strong>{u.username}'.format(u = user))
+	return '<br>'.join(users)
 	#return "Hello, code monkey!"
-	return cur.description
+	#return cur.description
+
 if __name__ == "__main__":
 	app.run()
