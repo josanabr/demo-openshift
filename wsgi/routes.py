@@ -25,7 +25,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 def index():
 	events = []
 	for event in Event.query.all():
-		events.appen('{e.id}: <strong>{e.username}'.format(e = event))
+		events.append('{e.id}: <strong>{e.username}'.format(e = event))
 	return '<br>'.join(events)
 	#return "Hello, code monkey!"
 	#return cur.description
