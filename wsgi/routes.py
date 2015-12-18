@@ -2,6 +2,8 @@ import os
 import pymysql
 from flask import Flask
 app = Flask(__name__)
+from flask.ext.sqlalchemy import SQLAlchemy
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URL']
 db = SQLAlchemy(app)
 
