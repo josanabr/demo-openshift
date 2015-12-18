@@ -4,7 +4,7 @@ from flask import Flask
 app = Flask(__name__)
 from flask.ext.sqlalchemy import SQLAlchemy
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME']
 db = SQLAlchemy(app)
 
 class Event(db.Model):
