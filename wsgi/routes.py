@@ -23,10 +23,10 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 
 @app.route("/")
 def index():
-	users = []
-	for user in User.query.all():
-		users.appen('{u.id}: <strong>{u.username}'.format(u = user))
-	return '<br>'.join(users)
+	events = []
+	for event in Event.query.all():
+		events.appen('{e.id}: <strong>{e.username}'.format(e = event))
+	return '<br>'.join(events)
 	#return "Hello, code monkey!"
 	#return cur.description
 
