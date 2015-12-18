@@ -12,7 +12,7 @@ class Event(db.Model):
 
 	def __init__(self, username, email):
 		self.username = username
-		self.email 0 email
+		self.email = email
 
 	def __repr__(self):
 		return '<User %r>' % self.username
