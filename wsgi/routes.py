@@ -2,7 +2,7 @@ import os
 import pymysql
 from flask import Flask
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URLÂ'] + os.environ['OPENSHIFT_APP_NAME']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URL']
 db = SQLAlchemy(app)
 
 class Event(db.Model):
