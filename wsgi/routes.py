@@ -30,6 +30,10 @@ def index():
 	#return "Hello, code monkey!"
 	#return cur.description
 
+@app.route("/manrique")
+def hola():
+	return "Hola, manrique"
+
 if __name__ == "__main__":
 	db.create_all()
 	for name in ['admin', 'guest']:
