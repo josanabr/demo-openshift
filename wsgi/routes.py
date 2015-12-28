@@ -10,7 +10,6 @@ db = SQLAlchemy(app)
 
 class Event(db.Model):
 	idprimary = db.Column(db.Integer, primary_key = True)
-	#username = db.Column(db.String(80), unique = True)
 	__tablename__ = 'event'
 	email = db.Column(db.String(120), unique = False)
 	event0 = db.Column(db.String(512), unique = False)
@@ -23,7 +22,6 @@ class Event(db.Model):
 		self.datetime = datetime
 
 	def __repr__(self):
-		#return '<User %r> <Event %r>' % (self.username, self.event0)
 		return '<email %r> <Event %r>' % (self.email, self.datetime)
 
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -32,10 +30,8 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 def index():
 	events = []
 	for event in Event.query.all():
-		events.append('{e.datetime}: <strong>{e.email}'.format(e = event))
+		events.append('{e.idprimary} -- {e.datetime}: <strong>{e.email}</strong>: {e.event0}'.format(e = event))
 	return '<br>'.join(events)
-	#return "Hello, code monkey!"
-	#return cur.description
 
 @app.route("/createdummy")
 def createdummy():
@@ -45,10 +41,14 @@ def createdummy():
 	db.session.commit()
 	return "OK"
 
-@app.route("/manrique")
-def hola():
-	return "Hola, manrique"
-
+@app.route("/addevent", methods=['POST')
+def addevent(arg_event0, arg_email):
+	x = time.mktime(datetime.datetime.now().timetuple())
+	e = Event(event0 = arg_event0, email = arg_email, datetime = str(x))
+	db.session.add(e)
+	db.session.commit()
+	return "OK"
+	
 if __name__ == "__main__":
 	db.create_all()
 	for name in ['admin', 'guest']:
