@@ -22,6 +22,7 @@ class Event(db.Model):
 		self.event0 = event0
 		self.datetime = datetime
 
+
 	def __repr__(self):
 		#return '<User %r> <Event %r>' % (self.username, self.event0)
 		return '<email %r> <Event %r>' % (self.email, self.datetime)
