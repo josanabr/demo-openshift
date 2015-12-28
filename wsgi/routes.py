@@ -37,6 +37,7 @@ def createdummy():
 	e = Event(event="ls -l")
 	db.session.add(e)
 	db.session.commit()
+	return "OK"
 
 @app.route("/manrique")
 def hola():
