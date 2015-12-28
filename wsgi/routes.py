@@ -11,13 +11,15 @@ class Event(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	username = db.Column(db.String(80), unique = True)
 	email = db.Column(db.String(120), unique = False)
+	event = db.Column(db.String(512), unique = False)
 
-	def __init__(self, username, email):
+	def __init__(self, username, email, event):
 		self.username = username
 		self.email = email
+		self.event = event
 
 	def __repr__(self):
-		return '<User %r>' % self.username
+		return '<User %r> <Event %r>' % (self.username, self.event)
 
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
@@ -29,6 +31,11 @@ def index():
 	return '<br>'.join(events)
 	#return "Hello, code monkey!"
 	#return cur.description
+
+@app.route("/createdummy")
+def createdummy():
+	e = Event(event="ls -l"
+	db.session.add(e)
 
 @app.route("/manrique")
 def hola():
