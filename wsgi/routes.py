@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URL'] + o
 db = SQLAlchemy(app)
 
 class Event(db.Model):
-	#id = db.Column(db.Integer, primary_key = True)
+	idprimary = db.Column(db.Integer, primary_key = True)
 	#username = db.Column(db.String(80), unique = True)
 	__tablename__ = 'event'
 	email = db.Column(db.String(120), unique = False)
@@ -21,7 +21,6 @@ class Event(db.Model):
 		self.email = email
 		self.event0 = event0
 		self.datetime = datetime
-
 
 	def __repr__(self):
 		#return '<User %r> <Event %r>' % (self.username, self.event0)
