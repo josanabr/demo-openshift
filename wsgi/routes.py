@@ -34,8 +34,9 @@ def index():
 
 @app.route("/createdummy")
 def createdummy():
-	e = Event(event="ls -l"
+	e = Event(event="ls -l")
 	db.session.add(e)
+	db.session.commit()
 
 @app.route("/manrique")
 def hola():
