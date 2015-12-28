@@ -42,9 +42,9 @@ def createdummy():
 	return "OK"
 
 @app.route("/addevent", methods=['POST'])
-def addevent(arg_event0, arg_email):
+def addevent():
 	x = time.mktime(datetime.datetime.now().timetuple())
-	e = Event(event0 = arg_event0, email = arg_email, datetime = str(x))
+	e = Event(event0 = request.form['event0'], email = request.form['email'], datetime = str(x))
 	db.session.add(e)
 	db.session.commit()
 	return "OK"
