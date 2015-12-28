@@ -39,7 +39,7 @@ def index():
 @app.route("/createdummy")
 def createdummy():
 	x=time.mktime(datetime.datetime.now().timetuple())
-	e = Event(event = "ls -l", email = "john.sanabria@gmail.com", id = x)
+	e = Event(event = "ls -l", email = "john.sanabria@gmail.com", id = str(x))
 	db.session.add(e)
 	db.session.commit()
 	return "OK"
