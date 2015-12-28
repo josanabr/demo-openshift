@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 class Event(db.Model):
 	#id = db.Column(db.Integer, primary_key = True)
 	#username = db.Column(db.String(80), unique = True)
+	__tablename__ = 'event'
 	email = db.Column(db.String(120), unique = False)
 	event0 = db.Column(db.String(512), unique = False)
 	datetime = db.Column(db.String(32), unique = False)
