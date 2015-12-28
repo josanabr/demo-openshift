@@ -1,5 +1,6 @@
 import os
 import pymysql
+import datetime, time
 from flask import Flask
 app = Flask(__name__)
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -34,7 +35,8 @@ def index():
 
 @app.route("/createdummy")
 def createdummy():
-	e = Event(event="ls -l")
+	x=time.mktime(datetime.datetime.now().timetuple())
+	e = Event(event="ls -l", username=str(x), email="john.sanabria@gmail.com")
 	db.session.add(e)
 	db.session.commit()
 	return "OK"
