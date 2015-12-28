@@ -9,18 +9,21 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_MYSQL_DB_URL'] + o
 db = SQLAlchemy(app)
 
 class Event(db.Model):
-	id = db.Column(db.Integer, primary_key = True)
-	username = db.Column(db.String(80), unique = True)
+	#id = db.Column(db.Integer, primary_key = True)
+	#username = db.Column(db.String(80), unique = True)
 	email = db.Column(db.String(120), unique = False)
 	event = db.Column(db.String(512), unique = False)
+	id = db.Column(db.String(32), unique = False)
 
-	def __init__(self, username, email, event):
-		self.username = username
+	def __init__(self, id, email, event):
+		#self.username = username
 		self.email = email
 		self.event = event
+		self.id = id
 
 	def __repr__(self):
-		return '<User %r> <Event %r>' % (self.username, self.event)
+		#return '<User %r> <Event %r>' % (self.username, self.event)
+		return '<email %r> <Event %r>' % (self.email, self.event)
 
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
@@ -28,7 +31,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 def index():
 	events = []
 	for event in Event.query.all():
-		events.append('{e.id}: <strong>{e.username}'.format(e = event))
+		events.append('{e.id}: <strong>{e.email}'.format(e = event))
 	return '<br>'.join(events)
 	#return "Hello, code monkey!"
 	#return cur.description
@@ -36,7 +39,7 @@ def index():
 @app.route("/createdummy")
 def createdummy():
 	x=time.mktime(datetime.datetime.now().timetuple())
-	e = Event(event="ls -l", username=str(x), email="john.sanabria@gmail.com")
+	e = Event(event = "ls -l", email = "john.sanabria@gmail.com", id = x)
 	db.session.add(e)
 	db.session.commit()
 	return "OK"
