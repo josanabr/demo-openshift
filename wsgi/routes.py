@@ -12,18 +12,18 @@ class Event(db.Model):
 	#id = db.Column(db.Integer, primary_key = True)
 	#username = db.Column(db.String(80), unique = True)
 	email = db.Column(db.String(120), unique = False)
-	event = db.Column(db.String(512), unique = False)
-	id = db.Column(db.String(32), unique = False)
+	event0 = db.Column(db.String(512), unique = False)
+	datetime = db.Column(db.String(32), unique = False)
 
-	def __init__(self, id, email, event):
+	def __init__(self, datetime, email, event0):
 		#self.username = username
 		self.email = email
-		self.event = event
-		self.id = id
+		self.event0 = event0
+		self.datetime = datetime
 
 	def __repr__(self):
-		#return '<User %r> <Event %r>' % (self.username, self.event)
-		return '<email %r> <Event %r>' % (self.email, self.event)
+		#return '<User %r> <Event %r>' % (self.username, self.event0)
+		return '<email %r> <Event %r>' % (self.email, self.datetime)
 
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
@@ -31,7 +31,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 def index():
 	events = []
 	for event in Event.query.all():
-		events.append('{e.id}: <strong>{e.email}'.format(e = event))
+		events.append('{e.datetime}: <strong>{e.email}'.format(e = event))
 	return '<br>'.join(events)
 	#return "Hello, code monkey!"
 	#return cur.description
@@ -39,7 +39,7 @@ def index():
 @app.route("/createdummy")
 def createdummy():
 	x=time.mktime(datetime.datetime.now().timetuple())
-	e = Event(event = "ls -l", email = "john.sanabria@gmail.com", id = str(x))
+	e = Event(event0 = "ls -l", email = "john.sanabria@gmail.com", datetime = str(x))
 	db.session.add(e)
 	db.session.commit()
 	return "OK"
