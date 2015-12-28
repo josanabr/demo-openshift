@@ -1,7 +1,7 @@
 import os
 import pymysql
 import datetime, time
-from flask import Flask
+from flask import Flask, request
 app = Flask(__name__)
 from flask.ext.sqlalchemy import SQLAlchemy
 
