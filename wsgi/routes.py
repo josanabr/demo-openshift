@@ -56,7 +56,7 @@ def querytemperature():
     for event in Event.query.all():
             events.append('{e.idprimary} -- {e.datetime}: \
                     <strong>{e.event0}</strong>'.format(e = event))
-    print events
+    #print events
     return "<Datetime %r> <Event %r>"%(events[0].datetime, events[0].event0)
 	
 if __name__ == "__main__":
