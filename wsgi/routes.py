@@ -52,7 +52,11 @@ def addevent():
 @app.route("/gettemperature", methods=['GET', 'POST'])
 def querytemperature(): 
     #events = Event.query.filter(Event.event0.startswith('TEMPERATURE')).last()
-    events = Event.query.all()
+    events = []
+    for event in Event.query.all():
+            events.append('{e.idprimary} -- {e.datetime}: \
+                    <strong>{e.event0}</strong>'.format(e = event))
+    print events
     return "<Datetime %r> <Event %r>"%(events[0].datetime, events[0].event0)
 	
 if __name__ == "__main__":
