@@ -48,6 +48,10 @@ def addevent():
 	db.session.add(e)
 	db.session.commit()
 	return "OK"
+
+@app.route("/gettemperature", methods=['GET', 'POST'])
+def querytemperature():
+	return "hola"
 	
 if __name__ == "__main__":
 	db.create_all()
