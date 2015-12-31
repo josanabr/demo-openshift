@@ -51,7 +51,7 @@ def addevent():
 
 @app.route("/gettemperature", methods=['GET', 'POST'])
 def querytemperature():
-	return "hola"
+	return "hola mundo"
 	
 if __name__ == "__main__":
 	db.create_all()
