@@ -57,7 +57,8 @@ def querytemperature():
             events.append('{e.idprimary} -- {e.datetime}: \
                     <strong>{e.event0}</strong>'.format(e = event))
     #print events
-    return "<Datetime %r> <Event %r>"%(events[0].datetime, events[0].event0)
+    #return "<Datetime %r> <Event %r>"%(events[0].datetime, events[0].event0)
+    return events[0]
 	
 if __name__ == "__main__":
 	db.create_all()
