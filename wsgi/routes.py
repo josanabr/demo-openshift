@@ -51,8 +51,9 @@ def addevent():
 
 @app.route("/gettemperature", methods=['GET', 'POST'])
 def querytemperature(): 
-    events = Event.query.filter(Event.event0.startswith('TEMPERATURE')).last()
-    return "<Datetime %r> <Event %r>"%(events.datetime, events.event0)
+    #events = Event.query.filter(Event.event0.startswith('TEMPERATURE')).last()
+    events = Event.query.all()
+    return "<Datetime %r> <Event %r>"%(events[0].datetime, events[0].event0)
 	
 if __name__ == "__main__":
 	db.create_all()
