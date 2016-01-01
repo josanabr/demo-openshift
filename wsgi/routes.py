@@ -49,16 +49,28 @@ def addevent():
 	db.session.commit()
 	return "OK"
 
-@app.route("/gettemperature", methods=['GET', 'POST'])
+@app.route("/getlasttemperature", methods=['GET'])
 def querytemperature(): 
-    #events = Event.query.filter(Event.event0.startswith('TEMPERATURE')).last()
+#    events = []
+#    for event in Event.query.all():
+#            events.append('{e.idprimary}#{e.datetime}#\
+#                    <strong>{e.event0}</strong>'.format(e = event))
+    return gettemperaturelist()[len(events) - 1]
+
+@app.route("/gettemperature", methods=['POST'])
+def querytemperature(): 
+    events = []
+#    for event in Event.query.all():
+#            events.append('{e.idprimary} {e.datetime} \
+#                    <strong>{e.event0}</strong>'.format(e = event))
+    return events[len(events) - 1]
+
+def gettemperaturelist():
     events = []
     for event in Event.query.all():
-            events.append('{e.idprimary} -- {e.datetime}: \
+            events.append('{e.idprimary}#{e.datetime}#\
                     <strong>{e.event0}</strong>'.format(e = event))
-    #print events
-    #return "<Datetime %r> <Event %r>"%(events[0].datetime, events[0].event0)
-    return events[0]
+    return events
 	
 if __name__ == "__main__":
 	db.create_all()
