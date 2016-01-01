@@ -50,7 +50,7 @@ def addevent():
 	return "OK"
 
 @app.route("/getlasttemperature", methods=['GET'])
-def querytemperature(): 
+def querylasttemperature(): 
 #    events = []
 #    for event in Event.query.all():
 #            events.append('{e.idprimary}#{e.datetime}#\
