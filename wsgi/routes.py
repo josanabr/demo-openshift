@@ -55,7 +55,8 @@ def querylasttemperature():
 #    for event in Event.query.all():
 #            events.append('{e.idprimary}#{e.datetime}#\
 #                    <strong>{e.event0}</strong>'.format(e = event))
-    return gettemperaturelist()[len(events) - 1]
+    events = gettemperaturelist()
+    return events[len(events) - 1]
 
 @app.route("/gettemperature", methods=['POST'])
 def querytemperature(): 
