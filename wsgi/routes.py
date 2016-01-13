@@ -28,10 +28,11 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 
 @app.route("/")
 def index():
-	events = []
-	for event in Event.query.all():
-		events.append('{e.idprimary} -- {e.datetime}: <strong>{e.email}</strong>: {e.event0}'.format(e = event))
-	return '<br>'.join(events)
+#	events = []
+#	for event in Event.query.all():
+#		events.append('{e.idprimary} -- {e.datetime}: <strong>{e.email}</strong>: {e.event0}'.format(e = event))
+#	return '<br>'.join(events)
+    return "Edier"
 
 @app.route("/createdummy")
 def createdummy():
